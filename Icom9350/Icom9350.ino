@@ -1,11 +1,18 @@
 /*
     Icom IC-7000/706 to Codan 9350 Adaptor Software
 
-    Copyright (C) 2015 Mark Jessop <vk5qi@rfhead.net>
+    Copyright (C) 2015-2016 Mark Jessop <vk5qi@rfhead.net>
 
+	Changelog:
+      - v1.0.1: Fix the delays to work with a 8MHz crystal. Should also now work with
+                any clock speed Arduino's delay functions support.
+	  - v1.0.2: Changed to 4MHz Crystal.  Updated build information.  Removed scan_mode
+				functions since this is not compatible with Icom interface, tidied up loop()
+				function names slightly.
+	
     Some Notes: Latest build update - (Matthew VK5ZM <vk5zm@bistre.net>)
 
-      - I've used Arduino 1.8.1 to compile code
+      - I've used Arduino 1.8.5 to compile code
       - Resonator frequency changed to 4MHz
       - Using Arduino board manager install "attiny" 1.0.2 board support package from David A Mellis
       - modify the boards.txt file
