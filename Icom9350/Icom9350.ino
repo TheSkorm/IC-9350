@@ -1,39 +1,13 @@
 /*
     Icom IC-7000/706 to Codan 9350 Adaptor Software
-
     Copyright (C) 2015-2016 Mark Jessop <vk5qi@rfhead.net>
-
 	Changelog:
       - v1.0.1: Fix the delays to work with a 8MHz crystal. Should also now work with
                 any clock speed Arduino's delay functions support.
 	  - v1.0.2: Changed to 4MHz Crystal.  Updated build information.  Removed scan_mode
 				functions since this is not compatible with Icom interface, tidied up loop()
 				function names slightly.
-	
-    Some Notes: Latest build update - (Matthew VK5ZM <vk5zm@bistre.net>)
-
-      - I've used Arduino 1.8.5 to compile code
-      - Resonator frequency changed to 4MHz
-      - Using Arduino board manager install "attiny" 1.0.2 board support package from David A Mellis
-      - modify the boards.txt file
-        - on a linux machine (~/.arduino15/packages/attiny/hardware/avr/1.0.2/boards.txt)
-        - on a windows machine (C:\Users\<NAME>\AppData\Local\Arduino15\packages\attiny\hardware\avr\1.0.2\boards.txt)
-      - Add the following lines in the attinyx4 section;
-
-        ATtinyX4.menu.clock.external4=External 4 MHz
-        ATtinyX4.menu.clock.external4.bootloader.low_fuses=0xfe
-        ATtinyX4.menu.clock.external4.bootloader.high_fuses=0xdc
-        ATtinyX4.menu.clock.external4.bootloader.extended_fuses=0xec
-        ATtinyX4.menu.clock.external4.build.f_cpu=4000000L
-      
-      - Configure arduino environment;
-      
-        Tools -> Board -> "ATtiny24/44/84"
-        Tools -> Processor -> "ATtiny44"
-        Tools -> Clock -> "External 4 MHz"
-
-      - On blank processor don't forget to run Tools -> Burn Bootloader to set the fuse bits
-      - You can then upload sketch to ATtiny44A flash
+    - v1.0.3: Change to using an Arduino Nano
 
   Interface PCB through to 9350 Pin Connections:
   
@@ -49,19 +23,15 @@
     Scan            D (Green)       2               5               2
     Tune Status     E (Yellow)      3               11              3
     Not Connected   F
-
     The MIT License (MIT)
-
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
     in the Software without restriction, including without limitation the rights
     to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
     copies of the Software, and to permit persons to whom the Software is
     furnished to do so, subject to the following conditions:
-
     The above copyright notice and this permission notice shall be included in all
     copies or substantial portions of the Software.
-
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
     IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
     FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -73,24 +43,21 @@
 
 // Pin definitions for VK5ZM designed ATTiny44A interface PCB R0V3.
 
-#define ICOM_START    8 // Attiny44 Pin 5 - Pulled high 3.3K resistor.
-                        // IC-7000 will pull this pin LOW to start tuning.
-#define ICOM_KEY      7 // ATtiny44 Pin 6 - Output, via Transistor network. 
+#define ICOM_START    6
+                        
+#define ICOM_KEY      3 
 
-#define CODAN_TUNE    3 // ATTiny44 Pin 10 - Pulled high 3.3K resistor
-#define CODAN_TUNEIO  1 // ATTiny44 Pin 12 - Pulled high 3.3K
-#define CODAN_SCAN    2 // ATTiny44 Pin 11 - Output via transistor network. Inverted output.
+#define CODAN_TUNE    A3
+#define CODAN_TUNEIO  A5
 
-#define LED           0 // ATTiny44 Pin 13 - LED. Pull low to activate.
+#define LED           LED_BUILTIN
 
 void setup()
 {
   // Setup output pins.
   pinMode(LED, OUTPUT);
   digitalWrite(LED, HIGH);
-  pinMode(CODAN_SCAN, OUTPUT);
   pinMode(ICOM_KEY, OUTPUT);
-  digitalWrite(CODAN_SCAN, LOW);      //Unused
   digitalWrite(ICOM_KEY, LOW);
 
   // Setup Input Pins
@@ -187,4 +154,3 @@ void tune_pass()
   // Turn off LED.
   digitalWrite(LED, HIGH);
 }
-
