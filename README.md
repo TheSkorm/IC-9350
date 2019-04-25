@@ -12,11 +12,11 @@ Notes for VK3FUR build:
   - BC847 replaced with 2N2222
   - IC1 replaced with Arduino Nano (no need for R1, C1, X1, IC1, R2, IC2)
   - Arduino Connections:
-      What was PB2 becomes D6
-               PA7 becomes D3
-               PA3 becomes A3
-               PA1 becomes A5
-               12v is inputed to VIN
+    - PB2 becomes D6
+    - PA7 becomes D3
+    - PA3 becomes A3
+    - PA1 becomes A5
+    - 12v is inputed to VIN
 
 https://crcit.net/c/1ec5415c
 
