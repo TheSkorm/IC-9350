@@ -3,6 +3,8 @@ Codan 9350/3040 to Icom IC-7000 and IC-706 interface circuit and software.
 
 DO NOT connect a IC-706 or an IC-7000 directly to a 5V microcontroller! The Icom radios use open-collector logic, with the IO lines pulled high to 13.8V. This can fry your microcontroller!
 
+![Circuit Diagram](circuit.png)
+
 Included in this repository is a schematic showing how to handle the level conversions and drive the inputs appropriately.
 
 Notes for VK3FUR build:
@@ -16,6 +18,9 @@ Notes for VK3FUR build:
                PA1 becomes A5
                12v is inputed to VIN
 
+https://crcit.net/c/1ec5415c
+
+![Example built board](board-built.jpg)
 
 Some Notes:
   * You can find instructions on how to build in the source file
