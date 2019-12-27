@@ -61,7 +61,7 @@ void setup()
   digitalWrite(ICOM_KEY, LOW);
 
   // Setup Input Pins
-  pinMode(ICOM_KEY, INPUT);
+  pinMode(ICOM_START, INPUT);
   pinMode(CODAN_TUNEIO, INPUT);
   pinMode(CODAN_TUNE, INPUT);
 }
