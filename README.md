@@ -18,6 +18,8 @@ Notes for VK3FUR build:
     - PA1 becomes A5
     - 12v is inputed to VIN
 
+Added a filtering cap (100nF) between pin 1 and ground of the icom. This isn't strictly needed but if you have issues with another close by transmitter causing the icom to tune then this can help.
+
 https://crcit.net/c/1ec5415c
 
 ![Example built board](board-built.jpg)
